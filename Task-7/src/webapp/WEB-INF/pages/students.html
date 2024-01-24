@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Students</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<table  border="1">
+    <thead>
+    <tr>
+        <th style="width: 10%;">ID</th>
+        <th style="width: 30%;">Name</th>
+        <th style="width: 20%;">Grade</th>
+        <th style="width: 40%;">Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.getId()}"></td>
+        <td>
+            <a th:href="@{/students/{id}(id=${student.getId()})}" th:text="${student.getName()}">student</a>
+        </td>
+        <td th:text="${student.getGrade()}"></td>
+        <td th:text="${student.getEmail()}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+<hr/>
+
+<a href="/students/new">Create new student</a>
+</body>
+</html>
